@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {CourseServiceClient} from '../services/CourseServiceClient';
+import {CourseServiceClient} from '../../services/CourseServiceClient';
 import {ActivatedRoute} from '@angular/router';
 import { faFile } from '@fortawesome/free-solid-svg-icons';
 
