@@ -10,9 +10,14 @@
             class="list-group-item text-center">
           <fa-icon [icon]="faFile"
                    style="color: cornflowerblue"
-                   class="col-1"></fa-icon>
-          <a routerLink="/table/courses/{{course._id}}/modules">
+                   class="col-1 float-left"></fa-icon>
+          <a class="float-left"
+             routerLink="/table/courses/{{course._id}}/modules">
             {{course.title}}
+          </a>
+          <a class="float-right"
+             routerLink="/courses/{{course._id}}/quizzes">
+            Quizzes
           </a>
         </li>
       </ul>
