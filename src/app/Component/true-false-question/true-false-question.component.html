@@ -1,0 +1,78 @@
+<div class="container-fluid">
+  <div class="row">
+    <h5>{{question.title}}</h5>
+    <fa-icon [icon]="faCheck"
+             class="col-md-auto"
+             style="color: #27AE60"
+             [hidden]="grading === false || !(answer === question.correct)"></fa-icon>
+    <fa-icon [icon]="faTimes"
+             class="col-md-auto"
+             style="color: #E74C3C"
+             [hidden]="grading === false || answer === question.correct"></fa-icon>
+  </div>
+  <ul class="list-group"
+      [hidden]="grading === true">
+    <li class="list-group-item">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="TRUE">
+        <label class="form-check-label">
+          True
+        </label>
+      </div>
+    </li>
+    <li class="list-group-item">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="FALSE">
+        <label class="form-check-label">
+          False
+        </label>
+      </div>
+    </li>
+  </ul>
+  <ul class="list-group"
+      [hidden]="grading === false">
+    <li class="list-group-item"
+        [ngStyle]="{'background': question.correct === 'TRUE' ? '#A9DFBF' : ''}">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="TRUE">
+        <label class="form-check-label">
+          True
+        </label>
+      </div>
+      <fa-icon [icon]="faCheck"
+               class="col-1 float-right"
+               style="color: #27AE60"
+               [hidden]="!(question.correct === 'TRUE')"></fa-icon>
+      <fa-icon [icon]="faTimes"
+               class="col-1 float-right"
+               style="color: #E74C3C"
+               [hidden]="!(answer === 'TRUE' && answer !== question.correct)"></fa-icon>
+    </li>
+    <li class="list-group-item"
+        [ngStyle]="{'background': answer !== question.correct && answer === 'FALSE' ? '#F5B7B1' : ''}">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="FALSE">
+        <label class="form-check-label">
+          False
+        </label>
+      </div>
+      <fa-icon [icon]="faCheck"
+               class="col-1 float-right"
+               style="color: #27AE60"
+               [hidden]="!(answer === 'FALSE' && answer === question.correct)"></fa-icon>
+      <fa-icon [icon]="faTimes"
+               class="col-1 float-right"
+               style="color: #E74C3C"
+               [hidden]="!(answer === 'FALSE' && answer !== question.correct)"></fa-icon>
+    </li>
+  </ul>
+  <br>
+  <div>
+    <span>Your answer: <b>{{answer}}</b></span>
+  </div>
+  <br>
+  <div>
+    <button type="button" class="btn btn-success" (click)="grade()">Grade</button>
+  </div>
+</div>
+
