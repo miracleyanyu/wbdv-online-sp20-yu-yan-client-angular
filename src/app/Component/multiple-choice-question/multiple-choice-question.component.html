@@ -1,0 +1,55 @@
+<div class="container-fluid">
+  <div class="row">
+    <h5>{{question.title}}</h5>
+    <fa-icon [icon]="faCheck"
+             class="col-md-auto"
+             style="color: #27AE60"
+             [hidden]="grading === false || !(answer === question.correct)"></fa-icon>
+    <fa-icon [icon]="faTimes"
+             class="col-md-auto"
+             style="color: #E74C3C"
+             [hidden]="grading === false || answer === question.correct"></fa-icon>
+  </div>
+  <ul class="list-group"
+      [hidden]="grading === true">
+    <li *ngFor="let choice of question.choices"
+        class="list-group-item">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="{{choice}}">
+        <label class="form-check-label">
+          {{choice}}
+        </label>
+      </div>
+    </li>
+  </ul>
+  <ul class="list-group"
+      [hidden]="grading === false">
+    <li *ngFor="let choice of question.choices"
+        class="list-group-item"
+        [ngStyle]="{'background': choice === question.correct ? '#A9DFBF' : '' ||
+                                  answer === choice && choice !== question.correct ? '#F5B7B1' : ''}">
+      <div class="form-check float-left">
+        <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="{{choice}}">
+        <label class="form-check-label">
+          {{choice}}
+        </label>
+      </div>
+      <fa-icon [icon]="faCheck"
+               class="col-1 float-right"
+               style="color: #27AE60"
+               [hidden]="!(choice === question.correct)"></fa-icon>
+      <fa-icon [icon]="faTimes"
+               class="col-1 float-right"
+               style="color: #E74C3C"
+               [hidden]="!(answer === choice && choice !== question.correct)"></fa-icon>
+    </li>
+  </ul>
+  <br>
+  <div>
+    <span>Your answer: <b>{{answer}}</b></span>
+  </div>
+  <br>
+  <div>
+    <button type="button" class="btn btn-success" (click)="grade()">Grade</button>
+  </div>
+</div>
