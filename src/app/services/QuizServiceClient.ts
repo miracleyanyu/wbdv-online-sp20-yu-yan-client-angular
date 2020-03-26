@@ -11,4 +11,11 @@ export class QuizServiceClient {
   findQuizById = (quizId) =>
     fetch(`https://wbdv-generic-server.herokuapp.com/api/yyan/quizzes/${quizId}`)
     .then(response => response.json())
+
+  // findAllQuizzes = () =>
+  //   fetch(`http://localhost:3000/api/quizzes`)
+  //   .then(response => response.json())
+  // findQuizById = (quizId) =>
+  //   fetch(`http://localhost:3000/api/quizzes/${quizId}`)
+  //   .then(response => response.json())
 }

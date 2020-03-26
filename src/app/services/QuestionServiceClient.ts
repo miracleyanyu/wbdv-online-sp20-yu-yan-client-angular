@@ -8,4 +8,8 @@ export class QuestionServiceClient {
   findQuestionById = (questionId) =>
     fetch(`https://wbdv-generic-server.herokuapp.com/api/yyan/questions/${questionId}`)
     .then(response => response.json())
+
+  // findQuestionsForQuiz = (quizId) =>
+  //   fetch(`http://localhost:3000/api/quizzes/${quizId}/questions`)
+  //   .then(response => response.json())
 }
