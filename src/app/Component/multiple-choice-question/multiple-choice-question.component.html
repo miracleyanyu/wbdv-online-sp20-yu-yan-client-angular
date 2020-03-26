@@ -4,11 +4,11 @@
     <fa-icon [icon]="faCheck"
              class="col-md-auto"
              style="color: #27AE60"
-             [hidden]="grading === false || !(answer === question.correct)"></fa-icon>
+             [hidden]="grading === false || !(answer.toLowerCase() === question.correct.toLowerCase())"></fa-icon>
     <fa-icon [icon]="faTimes"
              class="col-md-auto"
              style="color: #E74C3C"
-             [hidden]="grading === false || answer === question.correct"></fa-icon>
+             [hidden]="grading === false || answer.toLowerCase() === question.correct.toLowerCase()"></fa-icon>
   </div>
   <ul class="list-group"
       [hidden]="grading === true">
@@ -26,8 +26,8 @@
       [hidden]="grading === false">
     <li *ngFor="let choice of question.choices"
         class="list-group-item"
-        [ngStyle]="{'background': choice === question.correct ? '#A9DFBF' : '' ||
-                                  answer === choice && choice !== question.correct ? '#F5B7B1' : ''}">
+        [ngStyle]="{'background': choice.toLowerCase() === question.correct.toLowerCase() ? '#A9DFBF' : '' ||
+                                  answer.toLowerCase() === choice.toLowerCase() && choice.toLowerCase() !== question.correct.toLowerCase() ? '#F5B7B1' : ''}">
       <div class="form-check float-left">
         <input class="form-check-input" [(ngModel)]="answer" (change)="setDefault()" type="radio" name="{{question._id}}" value="{{choice}}">
         <label class="form-check-label">
@@ -37,11 +37,11 @@
       <fa-icon [icon]="faCheck"
                class="col-1 float-right"
                style="color: #27AE60"
-               [hidden]="!(choice === question.correct)"></fa-icon>
+               [hidden]="!(choice.toLowerCase() === question.correct.toLowerCase())"></fa-icon>
       <fa-icon [icon]="faTimes"
                class="col-1 float-right"
                style="color: #E74C3C"
-               [hidden]="!(answer === choice && choice !== question.correct)"></fa-icon>
+               [hidden]="!(answer.toLowerCase() === choice.toLowerCase() && choice.toLowerCase() !== question.correct.toLowerCase())"></fa-icon>
     </li>
   </ul>
   <br>
